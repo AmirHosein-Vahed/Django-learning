@@ -83,13 +83,23 @@ class Pizza(models.Model):
 class Personn(models.Model):
     name = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.name
+
 class Group(models.Model):
     name = models.CharField(max_length=50)
     # we use through argument to point to the model that will act as an intermediary
     members = models.ManyToManyField(Personn, through="Membership")
+
+    def __str__(self):
+        return self.name
+
 
 class Membership(models.Model):
     personn = models.ForeignKey(Personn, on_delete=models.CASCADE)
     group   = models.ForeignKey(Group, on_delete=models.CASCADE)
     date_joined = models.DateTimeField()
     invite_reason = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.personn.name + " -> " + self.group.name
