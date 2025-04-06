@@ -44,3 +44,11 @@ class Student(models.Model):
 
     def __str__(self):
         return self.name + " - " + self.year
+    
+class Runner(models.Model):
+    MedalType = models.TextChoices("MedalType", "GOLD SILVER BRONZE")
+    name = models.CharField(max_length=50)
+    medal = models.CharField(max_length=10, blank=True, choices=MedalType)
+
+    def __str__(self):
+        return self.name + " - " + self.medal
