@@ -54,8 +54,8 @@ class Runner(models.Model):
         return self.name + " - " + self.medal
     
 ### Realtionships-------------------------------------------------------------------------------------------------------
-## Many-to-One
 
+## Many-to-One
 # a Manufacturer makes multiple cars but each Car only has one Manufacturer
 
 class Manufacturer(models.Model):
@@ -70,4 +70,11 @@ class Car(models.Model):
 # m.car_set
 
 ## Many-to-Many
+# a Topping can be on multiple pizzas and each Pizza has multiple toppings
 
+class Topping(models.Model):
+    name = models.CharField(max_length=50)
+
+class Pizza(models.Model):
+    name = models.CharField(max_length=50)
+    toppings = models.ManyToManyField(Topping)
