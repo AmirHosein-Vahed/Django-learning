@@ -86,7 +86,7 @@ class Personn(models.Model):
 class Group(models.Model):
     name = models.CharField(max_length=50)
     # we use through argument to point to the model that will act as an intermediary
-    members = models.ManyToManyField(Personn, through="Memebership")
+    members = models.ManyToManyField(Personn, through="Membership")
 
 class Membership(models.Model):
     personn = models.ForeignKey(Personn, on_delete=models.CASCADE)
