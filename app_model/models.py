@@ -78,3 +78,18 @@ class Topping(models.Model):
 class Pizza(models.Model):
     name = models.CharField(max_length=50)
     toppings = models.ManyToManyField(Topping)
+
+
+class Personn(models.Model):
+    name = models.CharField(max_length=50)
+
+class Group(models.Model):
+    name = models.CharField(max_length=50)
+    # we use through argument to point to the model that will act as an intermediary
+    members = models.ManyToManyField(Personn, through="Memebership")
+
+class Membership(models.Model):
+    personn = models.ForeignKey(Personn, on_delete=models.CASCADE)
+    group   = models.ForeignKey(Group, on_delete=models.CASCADE)
+    date_joined = models.DateTimeField()
+    invite_reason = models.CharField(max_length=50)
