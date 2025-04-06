@@ -53,3 +53,21 @@ class Runner(models.Model):
     def __str__(self):
         return self.name + " - " + self.medal
     
+### Realtionships-------------------------------------------------------------------------------------------------------
+## Many-to-One
+
+# a Manufacturer makes multiple cars but each Car only has one Manufacturer
+
+class Manufacturer(models.Model):
+    name = models.CharField(max_length=50)
+
+class Car(models.Model):
+    name = models.CharField(max_length=50)
+    manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)
+    # company_that_makes_it = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)
+
+# c.manufacturer
+# m.car_set
+
+## Many-to-Many
+
